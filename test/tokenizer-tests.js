@@ -56,5 +56,16 @@ describe('Tokenizer', function () {
       
       tokens_in_fragment[1].should.containEql({ type: 'lyrics', text: '~The hills are alive!' });
     });
+    
+    it('should treat lines with only whitespace as empty', function () {
+      var script_fragment = "CHARACTER NAME\nSome dialog.\n  \nAn action.",
+          tokens_in_fragment = tokenizer.tokenize(script_fragment);
+      
+      tokens_in_fragment[0].should.containEql({ type: 'dialogue_begin' });
+      tokens_in_fragment[1].should.containEql({ type: 'character', text: 'CHARACTER NAME' });
+      tokens_in_fragment[2].should.containEql({ type: 'dialogue', text: 'Some dialog.'});
+      tokens_in_fragment[3].should.containEql({ type: 'dialogue_end' });
+      tokens_in_fragment[4].should.containEql({ type: 'action', text: 'An action.' });
+    });
   });
 });

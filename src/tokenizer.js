@@ -4,7 +4,9 @@ var sections = require('./sections');
 var tokenizer = {
   
   clean: function (script) {
-    return script.replace(sections.boneyard, '\n$1\n').replace(sections.standardizer, '\n').replace(sections.cleaner, '').replace(sections.whitespacer, '');
+    var s = script.replace(sections.boneyard, '\n$1\n').replace(sections.standardizer, '\n').replace(sections.cleaner, '').replace(sections.whitespacer, '');
+    s = s.replace(/^\s+$/gm, '');
+    return s;
   },
 
 
