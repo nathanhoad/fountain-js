@@ -63,7 +63,7 @@ var tokenizer = {
       // dialogue blocks - characters, parentheticals and dialogue
       if (match = line.match(sections.dialogue)) {
         if (match[1].indexOf('  ') !== match[1].length - 2) {
-          parts = match[3].split(/(\(.+\))(?:\n+)/).reverse();
+          parts = match[3].split(/(\(.+\))(?:\n+)/);
 
           dual_diaglogue = !!match[2];
 
